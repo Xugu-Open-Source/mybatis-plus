@@ -67,6 +67,8 @@ public class JdbcUtils {
             return DbType.H2;
         } else if (jdbcUrl.startsWith("jdbc:dm:") || jdbcUrl.startsWith("jdbc:log4jdbc:dm:")) {
             return DbType.DM;
+        } else if (jdbcUrl.contains(":xugu:")) {
+            return DbType.XUGU;
         } else {
             logger.warn("The jdbcUrl is " + jdbcUrl + ", Mybatis Plus Cannot Read Database type or The Database's Not Supported!");
             return DbType.OTHER;

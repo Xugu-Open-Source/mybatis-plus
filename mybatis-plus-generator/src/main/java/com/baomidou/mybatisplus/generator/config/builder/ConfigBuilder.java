@@ -443,6 +443,11 @@ public class ConfigBuilder {
                 }
                 tablesSql = String.format(tablesSql, schema);
             }
+            else if (DbType.XUGU == dbQuery.dbType()){
+
+                tablesSql = String.format(tablesSql, dataSourceConfig.getSchemaName());
+
+            }
             //oracle数据库表太多，出现最大游标错误
             else if (DbType.ORACLE == dbQuery.dbType()) {
                 String schema = dataSourceConfig.getSchemaName();
@@ -577,7 +582,10 @@ public class ConfigBuilder {
                 tableFieldsSql = String.format(tableFieldsSql, dataSourceConfig.getSchemaName(), tableInfo.getName());
             } else if (DbType.ORACLE == dbQuery.dbType()) {
                 tableFieldsSql = String.format(tableFieldsSql.replace("#schema", dataSourceConfig.getSchemaName()), tableInfo.getName());
-            } else {
+            }else if (DbType.XUGU == dbQuery.dbType()){
+                tableFieldsSql = String.format(tableFieldsSql, tableInfo.getName());
+            }
+            else {
                 tableFieldsSql = String.format(tableFieldsSql, tableInfo.getName());
             }
             PreparedStatement preparedStatement = connection.prepareStatement(tableFieldsSql);

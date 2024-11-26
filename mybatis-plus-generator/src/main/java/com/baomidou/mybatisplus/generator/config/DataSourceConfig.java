@@ -21,17 +21,8 @@ import java.sql.SQLException;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.toolkit.ExceptionUtils;
-import com.baomidou.mybatisplus.generator.config.converts.DB2TypeConvert;
-import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
-import com.baomidou.mybatisplus.generator.config.converts.OracleTypeConvert;
-import com.baomidou.mybatisplus.generator.config.converts.PostgreSqlTypeConvert;
-import com.baomidou.mybatisplus.generator.config.converts.SqlServerTypeConvert;
-import com.baomidou.mybatisplus.generator.config.querys.DB2Query;
-import com.baomidou.mybatisplus.generator.config.querys.MariadbQuery;
-import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
-import com.baomidou.mybatisplus.generator.config.querys.OracleQuery;
-import com.baomidou.mybatisplus.generator.config.querys.PostgreSqlQuery;
-import com.baomidou.mybatisplus.generator.config.querys.SqlServerQuery;
+import com.baomidou.mybatisplus.generator.config.converts.*;
+import com.baomidou.mybatisplus.generator.config.querys.*;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -99,6 +90,9 @@ public class DataSourceConfig {
                 case MARIADB:
                     dbQuery = new MariadbQuery();
                     break;
+                case XUGU:
+                    dbQuery = new XuguQuery();
+                    break;
                 default:
                     // 默认 MYSQL
                     dbQuery = new MySqlQuery();
@@ -125,6 +119,8 @@ public class DataSourceConfig {
                 dbType = DbType.DB2;
             } else if (driverName.contains("mariadb")) {
                 dbType = DbType.MARIADB;
+            } else if (driverName.contains("xugu")) {
+                dbType = DbType.XUGU;
             } else {
                 throw ExceptionUtils.mpe("Unknown type of database!");
             }
@@ -149,6 +145,9 @@ public class DataSourceConfig {
                     break;
                 case MARIADB:
                     typeConvert = new MySqlTypeConvert();
+                    break;
+                case XUGU:
+                    typeConvert = new XuguTypeConvert();
                     break;
                 default:
                     // 默认 MYSQL

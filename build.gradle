@@ -65,7 +65,22 @@ description = "Mybatis 增强工具包 - 只做增强不做改变，简化CRUD�
 
 buildscript {
     repositories {
-        maven { url "https://repo.spring.io/plugins-release" }
+        mavenLocal()
+        maven{ url "http://maven.aliyun.com/nexus/content/groups/public" }
+        //阿里云新库
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "https://maven.aliyun.com/repository/spring" }
+        maven { url "https://maven.aliyun.com/repository/spring-plugin" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/releases" }
+        maven { url "https://maven.aliyun.com/repository/snapshots" }
+        maven { url "https://maven.aliyun.com/repository/grails-core" }
+        maven { url "https://maven.aliyun.com/repository/mapr-public" }
+        maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
+
     }
     dependencies {
         classpath("org.springframework.build.gradle:propdeps-plugin:0.0.7")
